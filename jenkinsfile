@@ -16,7 +16,7 @@ pipeline
 		stage('Git Link')
 		{
 			steps{
-			git branch: 'main', url : ""
+			git branch: 'main', url : "https://github.com/br-chandan/Devops-IA-2.git"
 			}
 		}
 		stage('build image')
