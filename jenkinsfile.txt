@@ -1,0 +1,59 @@
+pipeline
+{
+	agent any
+	environment
+	{
+		DOCKER = credentials("dockerhub")
+		DOCKER_NAME = 'chandanbr/ia2'
+	}
+	stages
+	{
+		stage('Git Link')
+		{
+			steps{
+			git branch: 'main', url : ""
+			}
+		}
+		stage('build image')
+		{
+			steps
+			{
+				script
+				{
+						dockerimage = docker.build("${DOCKER_NAME}:latest")
+				}
+			}
+		}
+		stage("Push it to hub")
+		{
+			steps
+			{
+				script
+				{
+					docker.withRegistry('https://index.docker.io/v1/','dockerhub')
+					{
+						dockerimage.push()
+					}
+				}
+			}
+		}
+	
+	}
+	
+	post
+	{
+		success
+		{
+			echo "Successs"
+		}
+		failure
+		{
+			echo "Failure"
+		}
+		always
+		{
+			echo "Default"
+		}
+	
+	}
+}
