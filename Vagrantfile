@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 config.vm.box = "ubuntu/jammy64"
-# Swarm Manager
+# Manager
 config.vm.define "manager-vm" do |manager|
 manager.vm.hostname = "manager-vm"
 manager.vm.network "private_network", ip: "192.168.56.10"
