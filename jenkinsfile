@@ -9,7 +9,7 @@ pipeline
 	environment
 	{
 		DOCKER = credentials("dockerhub")
-		DOCKER_NAME = 'chandanbr/ia2'
+		DOCKER_NAME = 'chandanbr/ia3'
 	}
 	stages
 	{
